@@ -12,5 +12,5 @@ class CreateProductResponse(NamedTuple):
   description: str | None
   price: Decimal
   location: str
-  status: ProductStatuses
+  status: str
   is_available: bool

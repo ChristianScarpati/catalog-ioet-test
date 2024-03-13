@@ -2,7 +2,7 @@ from decimal import Decimal
 
 from typing import NamedTuple
 
-from ....core import ProductStatuses
+from app.src.core.enums import ProductStatuses
 
 
 class CreateProductRequest(NamedTuple):
@@ -12,5 +12,5 @@ class CreateProductRequest(NamedTuple):
   description: str | None
   price: Decimal
   location: str
-  status: ProductStatuses
+  status: str
   is_available: bool

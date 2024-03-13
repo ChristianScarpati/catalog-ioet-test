@@ -73,6 +73,33 @@ class SQLProductRepository(ProductRepository):
     except Exception:
       self.session.rollback()
       raise ProductRepositoryException(method="find")
+    
+  
+  def get_by_status(self, status: str) -> List[Product]:
+    try:
+      with self.session as session:
+        products = (
+          session.query(ProductSchema).filter(ProductSchema.status == status).all()
+        )
+        if products is None:
+          return []
+        product_list = [
+          Product(
+            product_id = str(product.product_id),
+            user_id = str(product.user_id),
+            name = str(product.name),
+            description = str(product.description),
+            price = Decimal(product.price),
+            location = str(product.location),
+            status = str(product.status),
+            is_available = bool(product.is_available)
+          )
+          for product in products
+        ]
+        return product_list
+    except Exception:
+      self.session.rollback()
+      raise ProductRepositoryException(method="find_by_status")
 
   def edit(self, product: Product) -> Product:
     # Needs Implementation
@@ -81,4 +108,3 @@ class SQLProductRepository(ProductRepository):
   def delete(self, product_id: str) -> Product:
     # Needs Implementation
     pass
-

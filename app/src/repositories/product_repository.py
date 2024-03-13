@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import List, Optional
+from typing import List, Optional, Union
 
 from ..core.models import Product
 
@@ -24,3 +24,8 @@ class ProductRepository(ABC):
   @abstractmethod
   def delete(self, product_id: str) -> Product:
     raise NotImplementedError
+  
+  @abstractmethod
+  def get_by_status(self, status: str) -> Product:
+    pass
+  
