@@ -4,4 +4,4 @@ from ..core.enums import ProductStatuses
 
 
 class GetProductsRequest(BaseModel):
-    status: ProductStatuses | None
+    status: ProductStatuses 

@@ -1,7 +1,7 @@
-from typing import List
+from typing import List, Union
 from decimal import Decimal
 from pydantic import BaseModel
-
+from app.src.core.enums import ProductStatuses
 
 class ProductBase(BaseModel):
     product_id: str
@@ -13,14 +13,18 @@ class ProductBase(BaseModel):
     status: str
     is_available: bool
 
+
 class ListProductResponseDto(BaseModel):
     products: List[ProductBase]
 
-class FindProductByIdResponseDto(ProductBase):
-    ...
 
-class CreateProductRequestDto(ProductBase):
-    ...
+class FindProductByIdResponseDto(ProductBase): ...
 
-class CreateProductResponseDto(ProductBase):
-    ...
+
+class CreateProductRequestDto(ProductBase): ...
+
+
+class CreateProductResponseDto(ProductBase): ...
+
+
+class FindProductByStatusResponseDto(ListProductResponseDto): ...

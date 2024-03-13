@@ -1,5 +1,6 @@
 from .repositories import (
   Connection,
   SessionManager,
-  SQLConnection
+  SQLConnection,
+  MemoryProductRepository
 )

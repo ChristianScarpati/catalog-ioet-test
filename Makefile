@@ -18,7 +18,7 @@ help: ## Show this help (usage: make help)
 
 .PHONY: build
 build:	## Build project with docker-compose
-	${compose_command} --build -d
+	${compose_command} -f ${docker_compose_file_path} build
 
 .PHONY: up
 up:	## Run all services locally
@@ -35,3 +35,29 @@ logs:	## Show logs of all services
 .PHONY: dev_shell
 dev_shell:	## Run a dev shell
 	@${compose_command} -f ${docker_compose_file_path} exec ${app_service} bash
+
+.PHONY: create_dev_env
+create_dev_env:
+	python3 -m venv .venv && \
+	. .venv/bin/activate && \
+	pip install poetry && \
+	poetry install;
+
+.PHONY: win_create_dev_env
+win_create_dev_env:
+			python -m venv .venv && \
+			.venv\Scripts\activate.bat && \
+			pip install poetry && \
+			poetry install
+
+.PHONY: start
+start:  ## Starts the debug of the program
+	. .venv/bin/activate;
+	. .env
+	uvicorn main:app --reload
+
+.PHONY: win_start
+win_start:  ## Starts the debug of the program in windows environment
+	.venv\Scripts\activate.bat && \
+	.env && \
+	uvicorn main:app --reload

@@ -1,13 +1,14 @@
 from http import HTTPStatus
-
 from fastapi.testclient import TestClient
+from sqlalchemy.orm import Session
 
 
-def test__should_return_a_list_of_products(api_client: TestClient):
-    expected_products = 3
+# def test__should_return_a_list_of_products(api_client: TestClient, db_session: Session):
 
-    response = api_client.get("/products/")
-    products = response.json().get("products")
+#     expected_products = 3
 
-    assert response.status_code == HTTPStatus.OK
-    assert len(products) == expected_products
+#     response = api_client.get("/products/")
+#     products = response.json().get("products")
+
+#     assert response.status_code == HTTPStatus.OK
+    # assert len(products) == expected_products

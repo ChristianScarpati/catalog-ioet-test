@@ -24,8 +24,6 @@ class FindProductById:
     try:
       existing_product = self.product_repository.get_by_id(request.product_id)
       self.__verify_product_exists(existing_product, request_entity_id=request.product_id)
-      print(existing_product)
-      print(existing_product._asdict())
       response = FindProductByIdResponse(**existing_product._asdict())
       return response
     except ProductRepositoryException as e:
